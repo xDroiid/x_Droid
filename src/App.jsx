@@ -108,7 +108,7 @@ const AppMockup = () => {
           {/* PC Controls View */}
           <div className={`tab-content ${activeTab === 'pcControls' ? 'active' : ''}`}>
             <div className="content-grid">
-              <div className="app-card" style={{ flex: '0 0 48%' }}>
+              <div className="app-card">
                 <div className="card-label">REMOTE TARGET</div>
                 <div className="input-box">10.198.204.23</div>
               </div>
