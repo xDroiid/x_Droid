@@ -14,7 +14,7 @@ const featuresData = [
 const Navbar = () => (
   <nav>
     <div className="nav-brand">
-      <img src="/assets/dragon_logo_final.png" alt="xdroid Logo" />
+      <img src="/assets/dragon.svg" alt="xdroid Logo" />
       <span>xdroid Pro</span>
     </div>
     <ul className="nav-links">
@@ -490,7 +490,7 @@ const App = () => {
       <footer>
         <div className="footer-content">
           <div className="footer-brand">
-            <img src="/assets/dragon_logo_final.png" alt="xdroid Logo" className="footer-logo" />
+            <img src="/assets/dragon.svg" alt="xdroid Logo" className="footer-logo" />
             <span>xdroid Pro</span>
           </div>
           <div className="footer-links">
