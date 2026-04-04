@@ -265,13 +265,92 @@ const ProtocolModal = ({ onClose }) => {
   );
 };
 
+const DownloadModal = ({ onClose }) => {
+  return (
+    <div className="modal-backdrop download-backdrop" onClick={onClose}>
+      <motion.div 
+        className="modal-content folder-explorer"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="folder-header">
+          <div className="folder-title">
+            <FiSettings className="folder-icon-mini" />
+            <span>Download xdroid Pro</span>
+          </div>
+          <button className="close-btn-mini" onClick={onClose}><FiX /></button>
+        </div>
+        
+        <div className="folder-body">
+          <p className="modal-subtitle">Choose your platform to get started</p>
+          
+          <div className="download-grid">
+            {/* Android Version */}
+            <motion.div 
+              className="download-card"
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="card-platform-icon android">
+                <FiSmartphone />
+              </div>
+              <div className="card-details">
+                <h3>Android (APK)</h3>
+                <p>Native mobile experience</p>
+              </div>
+              <a 
+                href="https://xdroiid.github.io/x_Droid/xdroid.apk" 
+                className="primary-btn download-btn-action"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Download APK
+              </a>
+            </motion.div>
+
+            {/* Windows Version */}
+            <motion.div 
+              className="download-card"
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="card-platform-icon windows">
+                <FiMonitor />
+              </div>
+              <div className="card-details">
+                <h3>Windows (EXE)</h3>
+                <p>Desktop control hub</p>
+              </div>
+              <a 
+                href="https://xdroiid.github.io/x_Droid/xdroid.exe" 
+                className="primary-btn download-btn-action"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Download EXE
+              </a>
+            </motion.div>
+          </div>
+
+          <div className="folder-footer">
+            <FiShield size={14} />
+            <span>Secure download from official source</span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   useEffect(() => {
-    if (showModal) document.body.style.overflow = 'hidden';
+    if (showModal || showDownloadModal) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
-  }, [showModal]);
+  }, [showModal, showDownloadModal]);
 
   return (
     <div className="app">
@@ -286,7 +365,7 @@ const App = () => {
             <h1 className="hero-title">xdroid Pro</h1>
             <h2 className="hero-subtitle">Control Your PC in Real-Time</h2>
             <div className="hero-actions stagger-1 slide-up">
-              <button className="primary-btn">Download APK</button>
+              <button className="primary-btn" onClick={() => setShowDownloadModal(true)}>Download xdroid Pro</button>
               <button className="glass-btn" onClick={() => setShowModal(true)}><FiSettings /> Protocol Setup</button>
             </div>
           </div>
@@ -483,7 +562,7 @@ const App = () => {
         {/* FINAL CTA */}
         <section id="final-cta">
           <h2>Start Controlling Your PC Now</h2>
-          <button className="primary-btn huge-btn">Download xdroid Pro</button>
+          <button className="primary-btn huge-btn" onClick={() => setShowDownloadModal(true)}>Download xdroid Pro</button>
         </section>
       </main>
 
@@ -504,6 +583,7 @@ const App = () => {
 
       <AnimatePresence>
         {showModal && <ProtocolModal onClose={() => setShowModal(false)} />}
+        {showDownloadModal && <DownloadModal onClose={() => setShowDownloadModal(false)} />}
       </AnimatePresence>
     </div>
   );
